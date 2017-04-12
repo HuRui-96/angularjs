@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			#tab {
+				display: flex;
+			}
+			
+			#tab div {
+				flex: 1;
+				height: 30px;
+				line-height: 30px;
+				text-align: center;
+			}
+			
+			.page {
+				text-align: center;
+			}
+			
+			.active {
+				border-bottom: 1px solid red;
+			}
+			div {text-align: center;}
+			img {margin-top: 20px;}
+		</style>
+	</head>
+	<body ng-app="hrapp">
+		<div ng-controller="controllerA">
+			<div id="tab">
+				<div ng-click="change(1)" ng-class="{active:page1}" ng-init="content='第一张'" ng-bind="content"></div>
+				<div ng-click="change(2)" ng-class="{active:page2}" ng-init="content2='第二张'"  ng-bind="content2"></div>
+			</div>
+			<div ng-switch="page">
+				<div ng-switch-when="1" >
+					<img ng-init="src1='../img/1.jpg'" ng-src="{{src1}}" />
+				</div>
+				<div ng-switch-when="2" >
+					<img ng-init="src2='../img/2.jpg'" ng-src="{{src2}}" />					
+				</div>
+			</div>
+		</div>
+	</body>
+	<script src="../js/angular.js"></script>
+	<script type="text/javascript">
+		var app = angular.module('hrapp',[]);
+		app.controller('controllerA',function($scope){
+			$scope.page = 1;
+			$scope.page1 = true;
+			$scope.page2 = false;
+			$scope.change = function(num){
+				$scope.page = num;
+				if (num == 2){
+					$scope.page2 = true;
+					$scope.page1 = false;					
+				} else {
+					$scope.page1 = true;
+					$scope.page2 = false;
+				}
+			}
+		})
+	</script>
+</html>

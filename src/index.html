@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html ng-app="app">
+	<head>
+		<meta charset="UTF-8">
+		<title></title>	
+		<script src="js/angular.js"></script>
+	</head>
+	<body>
+		<p>{{name}}</p>
+		<p ng-controller="a">{{name}}</p>
+		<p ng-controller="b">{{name}}</p>
+		
+		<div ng-controller="c">
+			<img ng-src="{{src}}" />
+			<style type="text/css">
+				img {width : {{width}};}
+			</style>
+		</div>
+	</body>
+
+	
+</html>
+<script>
+		console.log(angular);
+		angular.module('app',[])
+			   .controller('a',function($scope){
+			   		$scope.name = "胡瑞",
+			   		$scope.age = 18
+			   })
+			   .controller('b',function($scope){
+			   		$scope.name = "胡蓉",
+			   		$scope.age = 19			   		
+			   })
+			   .controller('c',function($scope){
+			   		$scope.src = "img/IMG_0600.JPG",
+			   		$scope.width = '100px'
+			   })
+		
+</script>

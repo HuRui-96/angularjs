@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html ng-app="hrapp">
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<div ng-controller="controllerA">
+			<p ng-bind="name"></p>
+			<input type="text" ng-model="name" />
+			<div ng-color></div>
+		</div>
+	</body>
+	<script type="text/javascript" src="../js/angular.js" ></script>
+	<script type="text/javascript">
+		var app = angular.module("hrapp",[]);
+		app.controller("controllerA",function($scope){
+			
+		});
+		
+		app.directive("ngColor",function(){
+			return {
+				templateUrl : "../temp/hrdemo.html",
+				scope : false,//scope参数决定控制器和组件之间的关系   true 第一次影响后面不影响     false 互相影响      {} 互相不影响
+				link : function(scope,ele,attr){
+					scope.name = "Rubby";
+				}
+			}
+		})
+	</script>
+</html>

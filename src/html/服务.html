@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body ng-app="hrapp" ng-controller="controllerA">
+		
+			<div>
+				<p ng-bind="myUrl"></p>
+				<input type="button"  ng-click="change()" value="按钮" />
+				<p ng-bind="myHeader"></p>
+			</div>
+		
+	</body>
+	<script src="../js/angular.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		var app = angular.module('hrapp',[]);
+		app.controller('controllerA',function($scope,$location,$timeout){
+			$scope.myUrl = $location.absUrl();
+			$scope.change = function(){
+				console.log(angular);
+				console.log($scope);
+				console.log($location);
+			}
+			 $timeout(function () {
+		        $scope.myHeader = "How are you today?";
+		    }, 2000);
+		})
+		
+	</script>
+</html>
