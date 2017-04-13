@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html ng-app="hrapp">
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		
+		<div ng-controller="controllerA">
+			<p>{{name}}</p>
+			<input type="text" ng-model="name" />
+			<direc1 data="1"></direc1>
+			<direc1 data="2" makered hrhide=""></direc1>
+		</div>
+		
+	</body>
+	<script type="text/javascript" src="../js/angular.js" ></script>
+	<script type="text/javascript">
+		var app = angular.module("hrapp",[]);
+		app.controller("controllerA",function($scope){
+			
+		});
+		app.directive("direc1",function(){
+			return {
+				templateUrl : "../temp/hrdemo2.html",
+				replace : true,//是否显示指令标签    true不显示
+				scope : {},
+				link : function(scope,ele,attr){
+					scope.name = "Pony";
+					scope.text = "第一个组件";
+					scope.click = function(){
+						console.log("click");
+					}
+					scope.num = attr.data;
+					scope.cbd = function(){
+						console.log("cbd");
+					}
+					scope.bool = attr.hrhide;
+					if(scope.bool) {
+						ele.css('display','none');
+					}
+				}
+			}
+		});
+		app.directive("makered",function(){
+			return {
+				link : function(scope,ele,attr){
+					ele.css('background','red')
+				}
+			}
+		});
+//		app.directive("hrhide",function(){
+//			return {
+//				link : function(scope,ele,attr){
+//					ele.css('display','none')
+//				}
+//			}
+//		});
+	</script>
+</html>

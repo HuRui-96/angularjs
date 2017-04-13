@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html ng-app="hrapp">
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		
+		<div ng-controller="controllerA">
+			<button ng-hclick="hclick()">按钮一</button>
+			<div ng-color="blue">我用了自定义指令ng-color</div>
+			<pony data="1"></pony>
+			<pony data="2"></pony>
+		</div>
+		
+		<div ng-controller="controllerB">
+			<button ng-hclick="rclick()">按钮二</button>
+			<div ng-color="red">我用了自定义指令ng-color</div>
+		</div>
+		
+	</body>
+	<script src="../js/angular.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		var app = angular.module("hrapp",[]);
+		app.controller("controllerA",function($scope){
+			$scope.hclick = function(){
+				console.log("H点的")
+			}
+		});
+		app.controller("controllerB",function($scope){
+			$scope.rclick = function(){
+				console.log("R点的")
+			}
+		});
+		app.directive("ngHclick",function(){
+			return {
+				link : function(scope,ele,attr){
+					ele.bind("click",function(){
+						//console.log(attr.ngHclick);
+						//console.log(scope);
+						scope.$apply(attr.ngHclick);
+					})
+				}
+			}
+		});
+		app.directive("ngColor",function(){
+			return {
+				link : function(scope,ele,attr){
+					//scope.
+					ele.css('color',attr.ngColor);
+				}
+			}
+		});
+		
+		app.controller("direvCtrl",function($scope){
+			$scope.abc = function(){
+				console.log("abc");
+			}
+		})
+		app.directive("pony",function(){
+			return {
+				templateUrl : '../temp/hrdemo2.html',
+				scope : {},
+				controller : "direvCtrl",
+				link : function(scope,ele,attr){
+					scope.name = "小马哥";
+					scope.text = "pony";
+					scope.num = attr.data;
+				}
+			}
+		})
+	</script>
+</html>
