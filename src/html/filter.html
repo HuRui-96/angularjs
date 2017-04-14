@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html ng-app="hrapp">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+		<title></title>
+	</head>
+	<body>
+		<div ng-controller="controllerA">
+			<input type="text" ng-model="search" />
+			<button ng-click="bool = !bool">排序</button>
+			<ul>
+				<li ng-repeat="e in data | filter:{skill:search} | orderBy:'age':bool">{{"name:"+e.name+", age:"+e.age+" ,skill:"+e.skill}}</li>
+			</ul>
+		</div>
+	</body>
+	<script src="../js/angular.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		var app = angular.module('hrapp',[]);
+		app.controller("controllerA",function($scope){
+			$scope.search = "";
+			$scope.bool = "true";
+			$scope.data = [{
+				name : "Rui",
+				age : 21,
+				skill : "dream"
+			},{
+				name : "Cun",
+				age : 20,
+				skill : "js"
+			},{
+				name : "Liang",
+				age : 22,
+				skill : "php"
+			},{
+				name : "Hong",
+				age : 23,
+				skill : "js"
+			}]
+		})
+	</script>
+</html>
