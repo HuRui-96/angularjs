@@ -1,9 +1,33 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="hrapp">
 	<head>
 		<meta charset="UTF-8">
 		<title></title>
+		<link rel="stylesheet" type="text/css" href="../css/swiper.css"/>
 	</head>
 	<body>
+		<div ng-controller="controllerA">
+			<p>{{name}}</p>
+			<lunbtu></lunbtu>
+		</div>
 	</body>
+	<script src="../js/angular1.5.9.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../js/swiper.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		var app = angular.module('hrapp',[]);
+		app.controller('controllerA',function($scope){
+			$scope.name = "pony";
+		})
+		app.directive("lunbtu",function(){
+			return {
+				templateUrl : '../temp/lunbtu.html',
+				link : function(scope,ele,attr) {
+					var swiper = new Swiper('.swiper-container', {
+						pagination: '.swiper-pagination',
+						paginationClickable: true
+					});
+				}
+			}
+		})
+	</script>
 </html>

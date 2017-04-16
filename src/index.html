@@ -7,10 +7,11 @@
 	</head>
 	<body>
 		<p>{{name}}</p>
-		<p ng-controller="a">{{name}}</p>
-		<p ng-controller="b">{{name}}</p>
+		<!--<p ng-controller="a">{{name}}</p>
+		<p ng-controller="b">{{name}}</p>-->
 		
 		<div ng-controller="c">
+			<p ng-bind="hello"></p>
 			<img ng-src="{{src}}" />
 			<style type="text/css">
 				img {width : {{width}};}
@@ -32,8 +33,9 @@
 			   		$scope.age = 19			   		
 			   })
 			   .controller('c',function($scope){
-			   		$scope.src = "img/IMG_0600.JPG",
-			   		$scope.width = '100px'
+			   		$scope.hello = "hello world!"
+			   		$scope.src = "img/1.JPG",
+			   		$scope.width = '500px'
 			   })
 		
 </script>

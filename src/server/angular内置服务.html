@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html ng-app="hrapp">
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+		<div ng-controller="controllerA" style="border: 1px solid red;">
+			<p style="color: red;">$http</p>
+			<input type="text" ng-model="user" />
+			<input type="text" ng-model="pasw" />
+			<button ng-click="setGet()">get</button>
+			<button ng-click="setPost()">post</button>
+			<button ng-click="setJosnp()">jsonp</button>
+		</div>
+	</body>
+	<!--<script src="../js/angular.js" type="text/javascript" charset="utf-8"></script>-->
+	<script src="../js/angular1.5.9.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../js/ngPost.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		var app = angular.module('hrapp', ['MyModule']);
+		app.controller('controllerA', function($scope, $http) {
+			$scope.name = "pony";
+			$scope.user = "";
+			$scope.pasw = "";
+			$scope.setGet = function() {
+				$http({
+					url: 'api/get.php',
+					method: 'GET',
+					params: {
+						user: $scope.user,
+						pasw: $scope.pasw
+					}
+				}).then(function(data) {
+					console.log(data)
+				})
+			}
+			$scope.setPost = function() {
+				$http.post('api/post.php', {
+						params: {
+							user: $scope.user,
+							pasw: $scope.pasw
+						}
+					}).success(function(data) {
+						console.log(data)
+					})
+					//				$http({
+					//					url : 'api/post.php',
+					//					method: 'POST',
+					//					params: {
+					//						user: $scope.user,
+					//						pasw: $scope.pasw
+					//					}
+					//				}).then(function(data) {
+					//					console.log(data)
+					//				})
+			}
+			$scope.setJsonp = function() {
+				$http({
+					url: 'api/jsonp.php',
+					method: 'JSONP', 
+					params: {
+						user: $scope.user,
+						pasw: $scope.pasw
+					}
+				}).then(function(data) {
+					console.log(data)
+				});
+			}
+
+		})
+	</script>
+
+</html>
