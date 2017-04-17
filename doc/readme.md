@@ -1,4 +1,4 @@
-##angularjs常识
+##angularjs基础
 [Module](angularjs使用模块化开发的)
 
 一个angular程序就由一个主模块完成所有功能，一个主模块是由N个小模块组装成的
@@ -93,7 +93,93 @@ app.filter("过滤器名字",function("服务")){
 
 ##服务
 **$fiter服务**
+过滤器，用来过滤筛选关键信息
 
 **$sec服务**
+这个服务可以将html代码渲染到页面
 
 **$http服务**
+相当于原生js里面的javascript ,用$http.post()的时候要用1.5.9版本和一个组件不然传参数格式不对，这是个bug
+##自定义服务
+ng 提供服务的过程涉及它的依赖注入机制。首先注入一个 provide的对象。
+在通过调用一个 provider 的 $get() 方法，把得到的东西作为参数进行相关调用
+```angular
+ //这是一个provider
+  var pp = function(){
+    this.$get = function(){
+      return {'haha': '123'};
+    }
+  }
+
+  //我在模块的初始化过程当中, 定义了一个叫 PP 的服务
+  var app = angular.module('Demo', [], function($provide){
+    $provide.provider('PP', pp);
+  });
+
+  //PP服务实际上就是 pp 这个 provider 的 $get() 方法返回的东西
+  app.controller('TestCtrl',
+    function($scope, PP){
+      console.log(PP);
+    }
+  );
+```
+上面的代码是一种定义服务的方法，当然， ng 还有相关的 shortcut， ng 总有很多快捷方式 。
+
+第一个是 factory 方法，由 $provide 提供， module 的 factory 是一个引用，作用一样。
+```
+var app = angular.module('Demo', [], function($provide){
+    $provide.factory('PP', function(){
+      return {'hello': '123'};
+    });
+});
+app.controller('TestCtrl', function($scope, PP){ console.log(PP) });
+在 module 中使用：
+  var app = angular.module('Demo', [], function(){ });
+  app.factory('PP', function(){return {'abc': '123'}});
+  app.controller('TestCtrl', function($scope, PP){ console.log(PP) });
+  这段代码先定义了一个模块，又往模块里注入了$provide参数
+  这个方法直接把一个函数当成是一个对象的 $get() 方法，这样就不用显式地定义一个 provider
+```
+**自定义服务config**
+
+**自定义服务factory**
+
+**自定义服务service**
+```
+service 方法，也是由 $provide 提供， module 中有对它的同名引用。
+service 和 factory 的区别在于，前者是要求提供一个“构造方法”，
+后者是要求提供 $get() 方法。意思就是，前者一定是得到一个 object ，后者可以是一个数字或字符串。
+它们的关系大概是：
+  var app = angular.module('Demo', [], function(){ });
+  app.service = function(name, constructor){
+    app.factory(name, function(){
+      return (new constructor());
+    });
+  }
+  
+这里插一句，js 中 new 的作用，以 new a() 为例，过程相当于：
+1.创建一个空对象 obj
+2.把 obj 绑定到 a 函数的上下文当中（即 a 中的 this 现在指向 obj ）
+3.执行 a 函数
+4.返回 obj
+
+service 方法的使用就很简单了：
+  var app = angular.module('Demo', [], function(){ });
+  app.service('PP', function(){
+    this.abc = '123';
+  });
+  app.controller('TestCtrl', function($scope, PP){ console.log(PP) });
+```
+
+##事件广播通信数据
+```
+广播事件的名字 广播的值
+$scope.$broadcast('to-child', $scope.toChildContent);
+或者用$scope.$emit('to-child', $scope.toChildContent);
+
+接收
+$scope.$on('to-child', function(event, data) {
+	//从$emit或者$broadcast中获取的args事件传递来的信息
+	console.log(data)
+})
+```

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script src="../js/angular.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		var app = angular.module('hrapp',[]);
+		app.controller('controllerA',function($scope,http){
+			http.ajax('GET','test.php').success(function(data){
+				console.log(data);
+			})
+		})
+		app.service('http',function(){
+			return {
+				ajax : function(method,url){
+					var xml = new XMLHttpRequest();
+					xml.open(method,url,true);
+					xml.send()
+					xml.onreadystatechange = function(){
+						if(xml.readyState == 4 && )
+					}
+				}
+			}
+		})
+	</script>
+</html>
