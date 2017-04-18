@@ -4,7 +4,8 @@
 		<meta charset="UTF-8">
 		<title></title>
 	</head>
-	<body>
+	<body ng-app='hrapp' ng-controller="controllerA">
+		
 	</body>
 	<script src="../js/angular.js" type="text/javascript" charset="utf-8"></script>
 	<script type="text/javascript">
@@ -15,14 +16,23 @@
 			})
 		})
 		app.service('http',function(){
+			var xml = new XMLHttpRequest();
 			return {
 				ajax : function(method,url){
-					var xml = new XMLHttpRequest();
+					
 					xml.open(method,url,true);
-					xml.send()
+					xml.send();
+					
+					return this;
+				},
+				success : function(callback){
 					xml.onreadystatechange = function(){
-						if(xml.readyState == 4 && )
+						if(xml.readyState == 4 && xml.status == 200) {
+							callback(xml.responseText);
+						}
 					}
+					console.log('完成');
+					return this;
 				}
 			}
 		})
