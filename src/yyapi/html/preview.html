@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+		<title>测试移动端</title>
+		<link rel="stylesheet" type="text/css" href="../css/weui.css"/>
+	</head>
+	<body>
+		<ui-view></ui-view>
+	</body>
+	<script src="../js/angular.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../js/angular-ui-router.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		var app = angular.module('hrapp',['ui.router']);
+		app.controller('indexCtrl',function($scope){
+			$scope.name = "rui";
+		});
+		app.config(function($stateProvider,$urlRouterProvider){
+			$stateProvider.state('index',{
+				url : '/index',
+				templateUrl : '../template/preview.html',
+			});
+			$urlRouterProvider.when("", "/index")
+		});
+		angular.bootstrap(document,["hrapp"]);
+	</script>
+</html>
