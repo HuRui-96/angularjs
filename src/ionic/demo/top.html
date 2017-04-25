@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html ng-app="ionicApp">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
+		<title>ionic头部</title>
+		<link rel="stylesheet" type="text/css" href="../css/ionic.css" />
+	</head>
+
+	<body>
+
+		<ion-header-bar align-title="center" class="bar-positive">
+			<div class="buttons">
+				<button class="button" ng-click="doSomething()">左侧按钮</button>
+			</div>
+			<h1 class="title">标题</h1>
+		</ion-header-bar>
+
+		<ion-content ng-controller="MyController">
+			<!--<ion-refresher pulling-text="下拉刷新..." on-refresh="doRefresh()">-->
+			</ion-refresher>
+			<div class="list">
+
+				<a ng-repeat="news in items" class="item item-thumbnail-left" ng-href="{{news.url}}">
+					<img ng-src="{{news.picUrl}}">
+					<h2>{{news.title}}</h2>
+					<p>{{news.description}}</p>
+				</a>
+			</div>
+			<ion-infinite-scroll on-infinite="loadMore()"></ion-infinite-scroll>
+		</ion-content>
+		
+		
+
+		<ion-footer-bar align-title="left" class="bar-assertive">
+			<h1 class="title">底部</h1>
+		</ion-footer-bar>
+
+	</body>
+	<script src="../js/ionic.bundle.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		var app = angular.module('ionicApp', ['ionic'])
+			.controller('MyController', function($scope, $http) {
+				$scope.page = 1;
+				$scope.items = [];
+//				$scope.doRefresh = function() {
+//					$http.get('http://127.0.0.1:82/src/yyapi/data/meinv.php', {
+//							params: {
+//								page: $scope.page++
+//							}
+//						})
+//						.success(function(newItems) {
+//							$scope.items = newItems.showapi_res_body.newslist.concat($scope.items);
+//						})
+//						.finally(function() {
+//							// 停止广播ion-refresher
+//							$scope.$broadcast('scroll.refreshComplete');
+//						});
+//				};
+				$scope.loadMore = function() {
+					$http.get('http://127.0.0.1:82/src/yyapi/data/meinv.php', {
+							params: {
+								page: $scope.page++
+							}
+						})
+						.success(function(newItems) {
+							$scope.items = $scope.items.concat(newItems.showapi_res_body.newslist);
+						})
+						.finally(function() {
+							// 停止广播ion-scroll
+							$scope.$broadcast('scroll.infiniteScrollComplete');
+						});
+				};
+			});
+	</script>
+
+</html>

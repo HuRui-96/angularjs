@@ -106,7 +106,7 @@ ng 提供服务的过程涉及它的依赖注入机制。首先注入一个 prov
 ```angular
  //这是一个provider
   var pp = function(){
-    this.$get = function(){
+    this.$get = function(){    
       return {'haha': '123'};
     }
   }
