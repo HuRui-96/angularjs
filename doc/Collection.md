@@ -15,4 +15,6 @@
 
 源地址：[http://www.cnblogs.com/diycodes/](http://www.cnblogs.com/diycodes/p/5361753.html)
 
+小胡子哥：[http转https](http://www.cnblogs.com/hustskyking/p/upgrade-insecure-requests.html)
+
 

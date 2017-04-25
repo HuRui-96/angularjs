@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+
+	<body>
+		<div ng-controller="indexCtrl">
+			<input class="form-control" ng-model="country" placeholder="country" />
+			<input  class="form-control" ng-model="name" placeholder="names" />
+			<input  class="form-control" ng-model="address" placeholder="地址" />
+			<button class="btn btn-default" ng-click="add()">增加新闻</button>
+			<button class="btn btn-default" ng-click="select()">查询新闻</button>
+			<table class="table table-bordered">
+				<tr>
+					<th>id</th>
+					<th>country</th>
+					<th>name</th>
+					<th>地址</th>
+					<th>删除</th>
+					<th>修改</th>
+				</tr>
+				<tr ng-repeat="news in newss">
+					<th>{{news.id}}</th>
+					<th>{{news.country}}</th>
+					<th>{{news.name}}</th>
+					<th>{{news.url}}</th>
+					<th><input class="btn btn-default" ng-click="delete(news.id)" type="button" value="删除"></th>
+					<th><input class="btn btn-default" ng-click="edit(news.id)" type="button" value="修改"></th>
+				</tr>
+			</table>
+		</div>
+	</body>
+	<script src="js/angular.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		var app = angular.module("cmsApp", []);
+		app.controller("indexCtrl", function($scope, $http, $window) {
+			//$scope.name = "CMS"
+			$scope.channel = "6";
+			//增加
+			$scope.add = function() {
+				$http({
+					url : "http://localhost:8888/add",
+					params : {
+						country : $scope.country,
+						name : $scope.name,
+						address : $scope.address
+					}
+				}).then(function(data) {
+					console.log(data)
+					$scope.newss = data.data.newlists;
+				})
+			}
+			//删除
+			$scope.delete = function(data) {
+				$http({
+					url: "http://localhost:8888/delete",
+					params : {
+						id : data
+					}
+				}).then(function(data) {
+					console.log(data)
+					$scope.newss = data.data.newlists;
+				})
+			}
+			//查询
+			$scope.select = function() {
+				$http({
+					url: "http://localhost:8888/select",					
+				}).then(function(data) {
+					console.log(data)
+					$scope.newss = data.data.newlists;
+				})
+			}
+			//修改
+			$scope.edit = function(id) {
+				$window.location.href = "edit.html#!/?id=" + id;
+			}
+		})
+		angular.bootstrap(document, ["cmsApp"])
+	</script>
+
+</html>
