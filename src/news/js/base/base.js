@@ -1,1 +1,1 @@
-var app = angular.module('hrapp',['ui.router','routers','directives','controllers']);
+var app = angular.module('hrapp',['ui.router','routers','directives','controllers','filter']);

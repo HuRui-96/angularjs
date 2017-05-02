@@ -17,20 +17,20 @@
 			//新闻
 			.state("index.entertain", {
 				url: "/entertain",
-				templateUrl: "template/same.html",
+				templateUrl: "template/news.html",
 				controller: "entertainCtrl"
 			})
-			//社会
-			.state("index.society", {
-				url: "/society",
-				templateUrl: "template/same.html",
-				controller: "societyCtrl"
+			//音乐
+			.state("index.music", {
+				url: "/music",
+				templateUrl: "template/music.html",
+				controller: "music"
 			})
 			//军事
-			.state("index.military", {
-				url: "/military",
-				templateUrl: "template/same.html",
-				controller:"militaryCtrl"
+			.state("index.meinv", {
+				url: "/meinv",
+				templateUrl: "template/meinv.html",
+				controller:"meinvCtrl"
 			})
 			//新闻详情页
 			.state("detail", {
@@ -38,6 +38,6 @@
 				templateUrl: "template/detail.html",
 				controller: "detailCtrl"
 			});
-		$urlRouterProvider.when("", "/index")
+		$urlRouterProvider.when("", "/index/recommend")
 	}])
 })();

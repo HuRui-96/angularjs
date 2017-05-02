@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>express</title>
+	</head>
+	<link rel="stylesheet" type="text/css" href="../nodejs/css/bootstrap.css" />
+
+	<body>
+		<input class="form-control" placeholder="country" id="aa" />
+		<input class="form-control" placeholder="names" id="bb" />
+		<input class="form-control" placeholder="地址" id="cc" />
+		<button class="btn btn-default" id="dd">提交</button>
+	</body>
+
+	<script src="../nodejs/js/jquery.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		$('#dd').click(function(){
+			$.ajax({
+				type: "post",
+				url: "http://localhost:3000/list",
+				data: {
+					country: $('#aa').val(),
+					names: $("#bb").val(),
+					address: $('#cc').val()
+				}
+			})
+		})
+
+	</script>
+
+</html>

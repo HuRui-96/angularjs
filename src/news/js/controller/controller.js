@@ -31,7 +31,8 @@
 						//console.log(data);
 						$scope.sum = data.data.news_list.length;
 						if($scope.pageStart >= $scope.sum) {
-							console.log("没有更多数据了。")
+							console.log("没有更多数据了。");
+							$scope.isLoading = false;
 							return false;
 						}
 						/*如果剩下的记录数不够分页，就让分页数取剩下的记录数
@@ -106,7 +107,7 @@
 					.getSeconds());
 			return datetime;
 		}
-		
+
 		$scope.isLoading = true;
 		$http({
 			//method : 'JSONP',
@@ -122,11 +123,43 @@
 			$scope.isLoading = false;
 		})
 	}]);
-	controllers.controller("societyCtrl", ["$scope", function($scope) {
-		$scope.title = "社会";
+	controllers.controller("music", ["$scope", "$http", function($scope, $http) {
+		$scope.title = "热门音乐Top100";
+		$scope.down = "下载地址";
+		$scope.listen = "试听地址";
+		$scope.topid = 5;
+		$scope.rows = 15;
+		$scope.page = 1;
+		$scope.isLoading = true;
+		$http.get('data/qq_music.php', {
+			params: {
+				type: $scope.topid
+			}
+		}).then(function(data) {
+			$scope.musiclist = data.data.showapi_res_body.pagebean.songlist;
+			$scope.pagecount = $scope.musiclist.length / $scope.rows;
+			$scope.isLoading = false;
+		});
+		//点击分页
+		$scope.pagination = function(event) {
+			$scope.page = event.target.innerHTML;
+		}
 	}]);
-	controllers.controller("militaryCtrl", ["$scope", function($scope) {
-		$scope.title = "军事";
+	controllers.controller("meinvCtrl", ["$scope", "$http", function($scope, $http) {
+		$scope.title = "美女";
+		$scope.page = 1;
+		$scope.isLoading = true;
+		$http({
+			url: 'http://127.0.0.1:82/src/yyapi/data/meinv.php',
+			type: 'get',
+			params: {
+				page: $scope.page
+			}
+		}).then(function(data) {
+			console.log(data);
+			$scope.list = data.data.showapi_res_body.newslist;
+			$scope.isLoading = false;
+		})
 	}]);
 	controllers.controller("detailCtrl", ["$scope", "$http", "$location", "$state", function($scope, $http, $location, $state) {
 		//console.log($state.params)

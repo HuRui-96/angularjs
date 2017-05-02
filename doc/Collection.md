@@ -15,6 +15,10 @@
 
 源地址：[http://www.cnblogs.com/diycodes/](http://www.cnblogs.com/diycodes/p/5361753.html)
 
+<font color=#0366d6 size=5 face="黑体">其他</font>
+
 小胡子哥：[http转https](http://www.cnblogs.com/hustskyking/p/upgrade-insecure-requests.html)
 
+撒玛利亚人:[node.js module初步理解](http://www.cnblogs.com/dolphinX/p/3485260.html)
 
+ 田永强:[深入Node.js的模块机制](http://www.infoq.com/cn/articles/nodejs-module-mechanism/)

@@ -1,25 +1,66 @@
 .weui-hheader {
-	position: fixed;top: 0;height: 53px;line-height: 53px;background: #d43d3d;
+	position: fixed;
+	top: 0;
+	height: 53px;
+	line-height: 53px;
+	background: #d43d3d;
 }
+
 .weui-hheader p {
-	text-align: center;width: 100%;    font-size: 22px;    font-weight: 700;color: #fff;
+	text-align: center;
+	width: 100%;
+	font-size: 22px;
+	font-weight: 700;
+	color: #fff;
 }
+
 .weui-tabbar {
 	position: fixed;
 }
+
 .has_header {
 	margin-top: 53px;
 }
+
 .has_header img {
-	width: 100%;height: 234px;
+	width: 100%;
+	height: 234px;
 }
+
 .swiper-slide {
 	height: 234px;
 }
-.swiper-container {width: 100%;height: 100%;}
-.weui-list {
-	margin-top: 0;margin-bottom: 53px;
+
+.swiper-container {
+	width: 100%;
+	height: 100%;
 }
-.hnews {padding: 10px;margin-bottom: 53px;}
-.hnews p a{color: #222;}
-.hnews p span {text-align: right;font-size: 14px;color: #ccc;}
+
+.weui-list {
+	margin-top: 0;
+	margin-bottom: 53px;
+}
+
+.hnews {
+	padding: 10px;
+	margin-bottom: 53px;
+}
+
+.hnews p a {
+	color: #222;
+}
+
+.hnews p span {
+	text-align: right;
+	font-size: 14px;
+	color: #ccc;
+}
+
+body #hr td {
+	vertical-align: middle;
+}
+
+body #hr td img {
+	width: 45px;
+	height: 45px;
+}
