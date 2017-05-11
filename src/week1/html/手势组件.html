@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />		
-		<title></title>
+		<title>手势判断</title>
 	</head>
 	<body>
 		<div ng-controller="controllerA">
@@ -22,7 +22,7 @@
 					link : function(scope,ele,attr){
 						var xStart,xEnd,yStart,yEnd;
 						ele.bind('touchstart',function(e){
-							//console.log(e);
+							console.log(e);
 							xStart = e.changedTouches[0].pageX;
 							yStart = e.changedTouches[0].pageY;
 						})

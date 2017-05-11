@@ -2,6 +2,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0"/>
 		<title></title>
 		<style>
 			#tab {
@@ -23,7 +24,7 @@
 				border-bottom: 1px solid red;
 			}
 			div {text-align: center;}
-			img {margin-top: 20px;}
+			img {margin-top: 20px;width: 100%;}
 		</style>
 	</head>
 	<body ng-app="hrapp">
@@ -34,10 +35,10 @@
 			</div>
 			<div ng-switch="page">
 				<div ng-switch-when="1" >
-					<img ng-init="src1='../img/1.jpg'" ng-src="{{src1}}" />
+					<img ng-init="src1='../img/3.jpg'" ng-src="{{src1}}" />
 				</div>
 				<div ng-switch-when="2" >
-					<img ng-init="src2='../img/2.jpg'" ng-src="{{src2}}" />					
+					<img ng-init="src2='../img/1.jpg'" ng-src="{{src2}}" />					
 				</div>
 			</div>
 		</div>

@@ -1,9 +1,15 @@
+#apps {max-width: 450px;margin: 0 auto;}
+
 .weui-hheader {
 	position: fixed;
 	top: 0;
 	height: 53px;
 	line-height: 53px;
 	background: #d43d3d;
+	max-width: 450px;
+}
+.weui-hfooter {
+	max-width: 450px;
 }
 
 .weui-hheader p {
