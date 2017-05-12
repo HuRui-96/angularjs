@@ -5,7 +5,7 @@
     $showapi_secret = 'fd06612e230d449294697a8bdf99242c';  //替换此值,在官网的"我的应用"中找到相关值
     $paramArr = array(
          'showapi_appid'=> $showapi_appid,
-         'num'=> "5",
+         'num'=> "25",
          'page'=> $_GET["page"],
          'rand'=> "1"
          //添加其他参数

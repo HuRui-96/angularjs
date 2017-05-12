@@ -28,6 +28,13 @@
 			}
 		}
 	});
+	//弹窗
+	directives.directive('htanc',function() {
+		return {
+			replace : true,
+			templateUrl : "directives/hdialog.html"
+		}
+	});
 	//推荐页内容
 	directives.directive("hlist", function() {
 		return {

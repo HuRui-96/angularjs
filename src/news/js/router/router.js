@@ -26,11 +26,17 @@
 				templateUrl: "template/music.html",
 				controller: "music"
 			})
-			//军事
+			//美女
 			.state("index.meinv", {
 				url: "/meinv",
 				templateUrl: "template/meinv.html",
 				controller:"meinvCtrl"
+			})
+			//设置
+			.state("index.shez", {
+				url: "/shez",
+				templateUrl: "template/shez.html",
+				controller:"shezCtrl"
 			})
 			//新闻详情页
 			.state("detail", {
@@ -38,6 +44,6 @@
 				templateUrl: "template/detail.html",
 				controller: "detailCtrl"
 			});
-		$urlRouterProvider.when("", "/index/recommend")
+		$urlRouterProvider.when("/", "/index/recommend")
 	}])
 })();

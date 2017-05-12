@@ -12,6 +12,7 @@
 		$scope.title = "推荐";
 		$scope.page = 0;
 		$scope.news = [];
+		$scope.tanc = "opacity: 0; display: none;";
 		/*初始化*/
 		$scope.count = 0; /*计数器*/
 		$scope.pageStart = 0; /*开始位置*/
@@ -32,6 +33,7 @@
 						$scope.sum = data.data.news_list.length;
 						if($scope.pageStart >= $scope.sum) {
 							console.log("没有更多数据了。");
+							$scope.tanc = "opacity: 1; ";
 							$scope.isLoading = false;
 							return false;
 						}
@@ -59,6 +61,10 @@
 			}
 			/*首次加载*/
 		$scope.loadMore($scope.pageStart, $scope.pageSize);
+		//隐藏弹窗
+		$scope.hideTanC = function() {
+			$scope.tanc = "opacity: 0; display: none;";
+		}
 		//搜索框
 		$scope.isShowSearchBar = false;
 		$scope.showSearchBar = function() {
@@ -111,15 +117,21 @@
 		$scope.isLoading = true;
 		$http({
 			//method : 'JSONP',
-			url: 'http://route.showapi.com/1310-1',
-			params: {
-				"showapi_timestamp": formatterDateTime(), //注意要使用当前时间。服务器只处理时间误差10分钟以内的请求
-				"showapi_appid": '26916', //这里需要改成自己的appid
-				"showapi_sign": '72fa78be4c2045138d456456fb9a3a90' //这里需要改成自己的密钥
-			}
+//			url: 'http://route.showapi.com/1310-1',
+			url: "data/xinwen.json",
+//			params: {
+//				"showapi_timestamp": formatterDateTime(), //注意要使用当前时间。服务器只处理时间误差10分钟以内的请求
+//				"showapi_appid": '26916', //这里需要改成自己的appid
+//				"showapi_sign": '72fa78be4c2045138d456456fb9a3a90' //这里需要改成自己的密钥
+//			}
 		}).then(function(data) {
 			//console.log(data.data.showapi_res_body.showapi_res_body.list)
-			$scope.news = data.data.showapi_res_body.showapi_res_body.list;
+//			var da = data.data.showapi_res_body.showapi_res_body.list;
+//			da = JSON.stringify(da);
+//			console.log(da);
+////			console.log(data.data);
+//			$scope.news = data.data.showapi_res_body.showapi_res_body.list;
+			$scope.news = data.data;
 			$scope.isLoading = false;
 		})
 	}]);
@@ -131,12 +143,22 @@
 		$scope.rows = 15;
 		$scope.page = 1;
 		$scope.isLoading = true;
-		$http.get('data/qq_music.php', {
-			params: {
-				type: $scope.topid
-			}
-		}).then(function(data) {
-			$scope.musiclist = data.data.showapi_res_body.pagebean.songlist;
+//		$http.get('data/qq_music.php', {
+//			params: {
+//				type: $scope.topid
+//			}
+//		}).then(function(data) {
+////			var shuju = data.data.showapi_res_body.pagebean.songlist;
+////			shuju = JSON.stringify(shuju);
+////			console.log(shuju);
+//			$scope.musiclist = data.data.showapi_res_body.pagebean.songlist;
+//			$scope.pagecount = $scope.musiclist.length / $scope.rows;
+//			$scope.isLoading = false;
+//		});
+		$http({
+			url: "data/music.json",
+		}).then(function(data){
+			$scope.musiclist = data.data;
 			$scope.pagecount = $scope.musiclist.length / $scope.rows;
 			$scope.isLoading = false;
 		});
@@ -149,17 +171,27 @@
 		$scope.title = "美女";
 		$scope.page = 1;
 		$scope.isLoading = true;
+//		$http({
+//			url: 'http://127.0.0.1:82/src/yyapi/data/meinv.php',
+//			type: 'get',
+//			params: {
+//				page: $scope.page
+//			}
+//		}).then(function(data) {
+//			console.log(data);
+//			$scope.list = data.data.showapi_res_body.newslist;
+//			$scope.isLoading = false;
+//		})
 		$http({
-			url: 'http://127.0.0.1:82/src/yyapi/data/meinv.php',
-			type: 'get',
-			params: {
-				page: $scope.page
-			}
-		}).then(function(data) {
+			url: "data/meinv.json",
+		}).then(function(data){
 			console.log(data);
 			$scope.list = data.data.showapi_res_body.newslist;
 			$scope.isLoading = false;
-		})
+		});
+	}]);
+	controllers.controller("shezCtrl",["$scope",function($scope) {
+		$scope.title = "设置";
 	}]);
 	controllers.controller("detailCtrl", ["$scope", "$http", "$location", "$state", function($scope, $http, $location, $state) {
 		//console.log($state.params)
