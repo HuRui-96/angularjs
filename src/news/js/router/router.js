@@ -44,6 +44,6 @@
 				templateUrl: "template/detail.html",
 				controller: "detailCtrl"
 			});
-		$urlRouterProvider.when("/", "/index/recommend")
+		$urlRouterProvider.when("", "/index/recommend")
 	}])
 })();
