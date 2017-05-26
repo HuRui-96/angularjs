@@ -5,7 +5,7 @@
     $showapi_secret = 'fd06612e230d449294697a8bdf99242c';  //替换此值,在官网的"我的应用"中找到相关值
     $paramArr = array(
          'showapi_appid'=> $showapi_appid,
-         'num'=> "25",
+         'num'=> "1",
          'page'=> $_GET["page"],
          'rand'=> "1"
          //添加其他参数
@@ -36,7 +36,7 @@
     //echo "返回的json数据:<br>\r\n";
     //print $result.'<br>\r\n';
     echo $result;
-    $result = json_decode($result);
+    //$result = json_decode($result);
     //echo "<br>\r\n取出showapi_res_code的值:<br>\r\n";
     //print_r($result->showapi_res_code);
     //echo "<br>\r\n";

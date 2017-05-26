@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		p { font-size: 20px;color: red; }
+		.page {
+			background: #ccc;
+			color:#fff;
+			padding: 5px 10px;
+		}
+	</style>
+</head>
+<body>
+		<a href="#!/page1">第一页</a>
+		<a href="#!/page2">第二页</a>
+		<a href="#!/page3">第三页</a>
+		<ui-view></ui-view>	
+</body>
+	<script src="../js/angular.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../js/angular-ui-router.js" type="text/javascript" charset="utf-8"></script>
+	<script>
+		var app = angular.module('hrapp',['ui.router']);
+
+		app.config(function($stateProvider,$urlRouterProvider){
+			$stateProvider.state('page',{
+				url: '/page1',
+				templateUrl: 'template/demo01.html',
+				controller: 'page1Ctrl'
+			})			
+			.state('page2',{
+				url: '/page2',
+				templateUrl: 'template/demo02.html',
+				controller: 'page2Ctrl'
+			})
+			.state('page2.a',{
+				url: '/a',
+				templateUrl: 'template/demo03.html',
+				controller: 'page2a'
+			})
+			.state('page2.b',{
+				url: '/b',
+				templateUrl: 'template/demo03.html',
+				controller: 'page2b'
+			})
+			.state('page3',{
+				url: '/page3',
+				templateUrl: 'template/demo01.html',
+				controller: 'page3Ctrl'
+			});
+			$urlRouterProvider.when('','/page1')
+		})
+
+		app.controller('page1Ctrl',function($scope){
+			$scope.msg = "我是第一页"
+		})
+		app.controller('page2Ctrl',function($scope){
+			$scope.msg = "我是第二页"
+		})
+		app.controller('page2a',function($scope){
+			$scope.msg = "hello"
+		})
+		app.controller('page2b',function($scope){
+			$scope.msg = "world"
+		})
+		app.controller('page3Ctrl',function($scope){
+			$scope.msg = "我是第三页"
+		})
+		angular.bootstrap(document,["hrapp"]);
+	</script>
+</html>
