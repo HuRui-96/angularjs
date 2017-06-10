@@ -1,0 +1,55 @@
+header {
+  position: fixed;
+  height: 48px;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1; }
+div.newaddress{
+	position: fixed;
+	top: 48px;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	overflow: auto;
+}
+div.newaddress>ul{
+	width: 90%;
+	margin-left: 5%;
+}
+div.newaddress>ul>li{
+	width: 100%;
+	line-height: 30px;
+	padding: 8px 1px;
+	overflow: hidden;
+}
+div.newaddress>ul>li>div{
+	float: left;
+	width: 20%;
+	text-align: center;
+}
+div.newaddress>ul>li>div:nth-child(1){
+	background-color: #eee;
+	color: black;
+}
+div.newaddress>ul>li:nth-child(3)>div:nth-child(1){
+	line-height: 120px;
+}
+div.newaddress>ul>li:last-child>div{
+	width: 100%;
+	color: white;
+	background-color: #8E488E;
+}
+div.newaddress>ul>li>div:nth-child(2){
+	width: 80%;
+	text-align: left;
+}
+div.newaddress>ul>li>div:nth-child(2)>input,div.newaddress>ul>li>div:nth-child(2)>select{
+	height: 28px;
+	width: 100%;
+	border: 1px solid #ccc;
+}
+div.newaddress>ul>li:nth-child(5)>div:nth-child(2)>input{
+	width: 20%;
+	margin: 0;
+}

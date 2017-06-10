@@ -1,0 +1,17 @@
+{"data":[
+	{"money":33,"title":"脆心牛奶巧克力","src":"img/5.jpg","href":"product.html"},
+	{"money":40,"title":"经典牛肉芝士派","src":"img/6.jpg","href":"product.html"},
+	{"money":50,"title":"澳洲带肉牛脊骨","src":"img/7.jpg","href":"product.html"},
+	{"money":199,"title":"贝莎洛桑红葡萄酒整箱","src":"img/8.jpg","href":"product.html"},
+	{"money":188,"title":"肖青玉 五常稻花香米","src":"img/9.jpg","href":"product.html"},
+	{"money":33,"title":"脆心牛奶巧克力","src":"img/5.jpg","href":"product.html"},
+	{"money":40,"title":"经典牛肉芝士派","src":"img/6.jpg","href":"product.html"},
+	{"money":50,"title":"澳洲带肉牛脊骨","src":"img/7.jpg","href":"product.html"},
+	{"money":199,"title":"贝莎洛桑红葡萄酒整箱","src":"img/8.jpg","href":"product.html"},
+	{"money":188,"title":"肖青玉 五常稻花香米","src":"img/9.jpg","href":"product.html"},
+	{"money":33,"title":"脆心牛奶巧克力","src":"img/5.jpg","href":"product.html"},
+	{"money":40,"title":"经典牛肉芝士派","src":"img/6.jpg","href":"product.html"},
+	{"money":50,"title":"澳洲带肉牛脊骨","src":"img/7.jpg","href":"product.html"},
+	{"money":199,"title":"贝莎洛桑红葡萄酒整箱","src":"img/8.jpg","href":"product.html"},
+	{"money":188,"title":"肖青玉 五常稻花香米","src":"img/9.jpg","href":"product.html"}
+	]}

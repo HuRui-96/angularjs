@@ -1,0 +1,35 @@
+$(function(){
+	$("header").load("header1.html",function(responseTxt,statusTxt,xhr){
+		if(statusTxt=="success"){
+			$(".header1").find("div").text("个人中心");
+			setTimeout(function(){
+				$("header").show();
+			},50)
+		}
+	});
+	
+	$("footer").load("footer.html",function(responseTxt,statusTxt,xhr){
+		if(statusTxt=="success"){
+			$("div.footer>div>a").eq(4).css({color:"black"});
+			setTimeout(function(){
+				$("footer").show();
+			},50)
+		}
+	});
+	$.get(baseurl+"php/personal.php",function(rep){
+		var result = eval('('+rep+')');
+		if(!result.state){
+			location.assign("login.html");
+		}
+		$("#scroller>a>span:nth-child(2)>p").eq(0).text(result.data[0].phone).end().eq(1).text("昵称："+result.data[0].account);
+	})
+	$(document).click(function(evt){
+		if($(evt.target).hasClass("logout")){
+			$.get(baseurl+"php/logout.php",function(rep){
+				if(eval('('+rep+')').state){
+					location.assign("index.html");
+				}
+			})
+		}
+	})
+})

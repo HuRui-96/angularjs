@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+	<title>Document</title>
+	<link rel="stylesheet" href="js/swiper.css">
+	<style>
+		.seiper-slide img {
+			width: 150px;
+		}
+	</style>
+</head>
+<body>
+	<div class="swiper-container swiper-container-horizontal">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide"> <img src="images/1.jpg" alt=""></div>
+            <div class="swiper-slide"> <img src="images/2.jpg" alt=""></div>
+            <div class="swiper-slide"> <img src="images/3.jpg" alt=""></div>
+            <div class="swiper-slide"> <img src="images/1.jpg" alt=""></div>
+            <div class="swiper-slide"> <img src="images/2.jpg" alt=""></div>
+            <div class="swiper-slide"> <img src="images/3.jpg" alt=""></div>
+            <div class="swiper-slide"> <img src="images/1.jpg" alt=""></div>
+            <div class="swiper-slide"> <img src="images/2.jpg" alt=""></div>
+            <div class="swiper-slide"> <img src="images/3.jpg" alt=""></div>
+            <div class="swiper-slide"> <img src="images/1.jpg" alt=""></div>
+        </div>
+    </div>
+</body>
+	<script src='js/swiper.js'></script>
+	<script>		
+	    var swiper = new Swiper('.swiper-container', {
+	        slidesPerView: 3,
+	        paginationClickable: true,
+	        spaceBetween: 150,
+	        autoplay : 3000,
+			autoplayDisableOnInteraction : false,
+	    });  
+	</script>
+
+</html>

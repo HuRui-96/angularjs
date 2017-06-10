@@ -1,0 +1,60 @@
+<div  ng-controller="user" class="user">
+	<div class="header1">
+		<input type="button" value="搜索"/>
+		<select ng-model="searchrange" ng-change="changepage()">
+			<option ng-repeat="(key,value) in data[0]" ng-bind="interpret(key)" value="{{interpret(key)}}"></option>
+		</select>
+		<input type="text" ng-model="search" ng-change="changepage()"/>
+	</div>
+	<div class="content">
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th ng-repeat="(name,value) in data[0]" ng-bind="interpret(name)"></th>
+					<th>编辑</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="val in data| filter:mysearch | limitTo : pagerows : (pageindex-1)*pagerows">
+					<td ng-repeat="s in val" ng-bind="s"></td>
+					<td ng-click="clonn(val,$event)">
+						<i class="fa fa-file-text-o"></i>
+					</td>
+				</tr>
+			</tbody>
+			<tfoot>
+				<tr>
+					<td colspan="{{colspan+2}}">
+						页数： <span ng-repeat="p in arr" ng-bind="p" ng-click="page(p)" ng-class="p==pageindex ? 'active' : ''"></span>
+					</td>
+				</tr>
+			</tfoot>
+		</table>
+	</div>
+	
+	<div class="option" ng-show="optionshow">
+		<i class="fa fa-close" ng-click="returnli()"></i>
+		<div class="edit" ng-show="editshow">
+			<h3>用户编辑：</h3>
+			<table class="table clonedom">
+				<thead>
+					<tr>
+						<th ng-repeat="(name,value) in data[0]" ng-bind="interpret(name)" ></th>
+						<th>编辑</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td ng-repeat="(name,res) in cloned" ng-bind-html="dischange(name,res)">
+							
+						</td>
+						<td>
+							<button ng-click="upuser()">确认修改</button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>	
+</div>
+

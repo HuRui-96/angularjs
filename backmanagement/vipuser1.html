@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+		<title></title>
+		<script src="libs/jquery/dist/jquery.min.js"></script>
+		<script src="libs/jquery/jquery.form.js"></script>
+		<script src="libs/angular/angular.min.js"></script>
+		<script src="libs/ocLazyLoad-master/dist/ocLazyLoad.min.js"></script>
+		<script src="libs/angular/angular-ui/angular-ui-router.js"></script>
+		<script src="max/postaj.js"></script>
+		<script src="max/vipuser.js"></script>
+		<link rel="stylesheet" href="libs/dist/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="libs/font-awesome-4.7.0/css/font-awesome.min.css"/>
+		<link rel="stylesheet" href="libs/common/common.css"/>
+		<link rel="stylesheet" href="libs/css/vipuser.css" />
+	</head>
+	<body ng-app="myapp">
+		<header ng-controller="headcon">
+			<h1>优来选后台管理系统</h1>
+			<div>
+				<i class="fa fa-user"></i><span ng-bind="user"></span><i class="fa fa-envelope"></i>
+			</div>
+		</header>
+		<div class="content">
+			<div class="where">
+				<span>当前位置:</span><span></span>
+			</div>
+			<div class="content-left">
+				<ul ng-controller="mycon">
+					<li ng-repeat="(m,n) in result" ng-bind="n" ng-click="towhere(n,$event)" ng-class="nowlist(n)"></li>
+				</ul>
+			</div>
+			<div class="content-right" data-ui-view="">
+				
+			</div>
+		</div>
+	</body>
+</html>

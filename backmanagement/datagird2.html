@@ -1,0 +1,92 @@
+
+<div  ng-controller="product" class="products">
+	<div class="header1">
+		<input type="button" value="搜索"/>
+		<select ng-model="searchrange" ng-change="changepage()">
+		<option ng-repeat="(key,value) in data[0]" ng-bind="interpret(key)" value="{{interpret(key)}}"></option>
+		</select>
+		<input type="text" ng-model="search" ng-change="changepage()"/>
+		<div class="addbutton" ng-click="showadd()">添加商品</div>
+	</div>
+	
+	<div class="content">
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th ng-repeat="(name,value) in data[0]" ng-bind="interpret(name)"></th>
+					<th>编辑</th>
+					<th>删除</td>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="val in data| filter:mysearch | limitTo : pagerows : (pageindex-1)*pagerows" >
+					<td ng-repeat="(v,s) in val" ng-bind-html="selctimg(v,s)"></td>
+					<td>
+						<p>
+							<i class="fa fa-file-text-o" ng-click="clonn(val,$event)"></i>
+						<p>
+					</td>
+					<td>
+						<p>
+							<i class="glyphicon glyphicon-trash" ng-click="delete(val)"></i>
+						<p>
+					</td>
+				</tr>
+			</tbody>
+			<tfoot>
+				<tr>
+					<td colspan="{{colspan+2}}">
+						页数： <span ng-repeat="p in arr" ng-bind="p" ng-click="page(p)" ng-class="p==pageindex ? 'active' : ''"></span>
+					</td>
+				</tr>
+			</tfoot>
+		</table>
+	</div>
+	
+	<div class="option" ng-show="optionshow">
+		<i class="fa fa-close" ng-click="returnli()"></i>
+		<div class="addproduct" ng-show="addshow">
+			<h3>添加商品：</h3>
+			<table class="table">
+				<thead>
+					<tr>
+						<th ng-repeat="(name,value) in data[0]" ng-bind="interpret(name)" ng-if="name == 'productid'? false : true"></th>
+						<th>操作</th>
+					</tr>
+				</thead>
+				<tfoot>
+					<tr>
+						<td><input type="text" name="money" value="" placeholder=""/></td>
+						<td><input type="text" name="title" value="" placeholder=""/></td>
+						<td><form class="upprod"><input type="file" name="file" value="" placeholder=""/></form></td>
+						<td><input type="button" name="" value="上传" ng-click="upprod()"/>
+						</td>
+					</tr>
+				</tfoot>
+			</table>
+		</div>
+		<div class="edit" ng-show="editshow">
+			<h3>编辑商品：</h3>
+			<table class="table clonedom">
+				<thead>
+					<tr>
+						<th ng-repeat="(name,value) in data[0]" ng-bind="interpret(name)" ></th>
+						<th>操作</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td ng-repeat="(name,res) in cloned" ng-bind-html="dischange(name,res)">
+							
+						</td>
+						<td colspan="{{colspan+1}}">
+							<button ng-click="upproduct()">确认修改</button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		
+	</div>
+</div>
+
