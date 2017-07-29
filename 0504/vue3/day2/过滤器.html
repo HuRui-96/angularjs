@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+		<div id="demo">
+			<!--currency-->
+			<p style="color: red;">currency</p>
+			<p>{{num|currency "￥"}}</p>
+
+			<p style="color: red;">uppercase</p>
+			<p>{{str|uppercase}}</p>
+
+			<p style="color: red;">lowercase</p>
+			<p>{{str|lowercase}}</p>
+
+			<p style="color: red;">json</p>
+			<p>{{obj|json}}</p>
+
+			<p style="color: red;">capitalize</p>
+			<p>{{str|capitalize}}</p>
+
+			<p style="color: red;">pluralize</p>
+			<p>{{str|pluralize str}}</p>
+
+			<p style="color: red;">debounce</p>
+			<button @click="deb()|debounce 3000">Ok</button>
+			
+			<p style="color: red;">orderBy</p>
+			<button @click="sort=-sort">排序</button>
+			<select v-model="sortName">
+				<option value="id">id</option>
+				<option value="name">name</option>
+				<option value="skill">skill</option>
+			</select>
+			<ul>
+				<li v-for="arr in arrs|orderBy sortName sort">name:{{arr.name}} skill:{{arr.skill}} id:{{arr.id}}</li>
+			</ul>
+			
+			<p style="color: red;">filterBy</p>
+			<input v-model="search" />
+			<ul>
+				<li v-for="arr in arrs|filterBy search in 'name'">name:{{arr.name}} skill:{{arr.skill}} id:{{arr.id}}</li>
+			</ul>
+			
+			<p style="color: red;">limitBy</p>
+			<!--limitBy 长度  截取的位置-->
+			<p>{{str|limitBy 2 3}}</p>
+			<ul>
+				<li v-for="arr in arrs|limitBy 2 1">name:{{arr.name}} skill:{{arr.skill}} id:{{arr.id}}</li>
+			</ul>
+		</div>
+	</body>
+	<script src="js/vue.js"></script>
+	<script>
+		new Vue({
+			el: "#demo",
+			data: {
+				//筛选
+				search:'',
+				//排序
+				sort:99,
+				sortName: "id",
+				num: 1234567,
+				str: "aBcDeF",
+				obj: {
+					name: 'ws',
+					skill: 'pas'
+				},
+				arrs: [{
+					name: 'xie',
+					skill: 'pbs',
+					id: 1
+				}, {
+
+					name: '1lan',
+					skill: 'pas',
+					id: 3
+				}, {
+					name: 'Yi',
+					skill: 'css',
+					id: 2
+				}]
+			},
+			methods: {
+				deb: function() {
+					alert("test")
+				}
+			}
+		})
+	</script>
+
+</html>

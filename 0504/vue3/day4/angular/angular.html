@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+		<title></title>
+	</head>
+	<link rel="stylesheet" href="css/weui.css" />
+	<link rel="stylesheet" href="css/base.css" />
+	<body>
+		<ui-view></ui-view>
+	</body>
+	<script src="js/angular.js"></script>
+	<script src="js/angular-ui-router.js"></script>
+	<script src="js/jquery.js"></script>
+	<script src="module/app.js"></script>
+	<script src="components/xheader.js"></script>
+	<script src="components/xsearch.js"></script>
+	<script>
+		/*app.config
+		app.filter
+		app.directive
+		app.controller
+		app.service*/
+		
+		app.component("thirdCp",{
+			//view
+			template:`
+				<p>{{name}}</p>
+				<button ng-click="Click()">Ok</button>
+			`,
+			//link
+			//C
+			controller:($scope)=>{
+				//M
+				$scope.name = "第三个组件";
+				$scope.Click = function(){
+					console.log("abc")
+				}
+			}
+		})
+	</script>
+	<script>	
+		angular.bootstrap(document, ["demo"])
+	</script>
+
+</html>

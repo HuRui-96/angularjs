@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body id="demo">
+		<p>{{name}}</p>
+		<first-cp style="border:1px solid red"></first-cp>
+		<second-cp :msg="name"></second-cp>
+		<third-cp style="border:1px solid red"></third-cp>
+	</body>
+	<script src="js/vue.js"></script>
+	<script>
+		//定义
+		var firstCp = Vue.extend({
+			template:"<p>第一个组件</p>"
+		})
+		//注册
+		//Vue.component("firstCp",firstCp)
+		//定义和注册
+		Vue.component("secondCp",{
+			props:['msg'],
+			//html
+			template:`
+				<div style="border:1px solid red">
+					<p>{{name}}</p>
+					<button @click="Click()">Ok</button>
+					<style>
+						p {
+							color:red
+						}
+					<style>
+				</div>
+			`,
+			//data
+			data:()=>{
+				return {
+					name:"第二个组件!"
+				}
+			},
+			//逻辑
+			methods:{
+				Click(){
+					console.log("Click")
+				}
+			},
+			ready(){
+				console.log("ready")
+				console.log(this.msg)
+			}
+		})
+		//不过有两个特例： data 和 el
+		new Vue({
+			el:"#demo",
+			components:{
+				thirdCp:{
+					template:"<p>第三个组件</p>"
+				},
+				firstCp
+			},
+			data:{
+				name:"组件DEMO"
+			}
+		})
+	</script>
+</html>

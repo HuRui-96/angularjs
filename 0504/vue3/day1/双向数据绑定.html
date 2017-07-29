@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<script src="js/vue.js"></script>
+	<body>
+		<!--V-->
+		<div id="demo">
+			<p style="color: red;">标签的属性值</p>
+			<p name="{{text}}">text</p>
+			<p style="color: red;">标签之间</p>
+			<p>{{name}}</p>
+			<p style="color: red;">数组</p>
+			<p>{{arr[2]}}</p>
+			<p style="color: red;">对象</p>
+			<p>{{obj.skill}}</p>
+			<p style="color: red;">布尔值&&三元表达式</p>
+			<p>{{!bool?"是真的":"是假的"}}</p>
+			<p style="color: red;">数字</p>
+			<p>{{num}}</p>
+			<p style="color: red;">HTML</p>
+			<p>{{{html}}}</p>
+			<p style="color: red;">算数运算</p>
+			<p>{{'11'+1}}</p>
+		</div>
+	</body>
+	<script>
+		new Vue({
+			el: "#demo",
+			//M
+			data: {
+				name: "w",
+				text: "abc",
+				arr:['a','b','c'],
+				obj:{
+					skill:"PS"
+				},
+				bool:true,
+				num:123,
+				html:"<p>123<span>456</span></p>"
+			}
+		})
+	</script>
+</html>

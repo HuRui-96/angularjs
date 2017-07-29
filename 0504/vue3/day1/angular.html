@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<!--V-->
+		<div ng-controller="indexCtrl">
+			<p ng-bind="name"></p>
+			<p ng-bind-html="html"></p>
+			<button ng-click="Click()">Ok</button>
+		</div>
+	</body>
+	<script src="js/angular.js"></script>
+	<script>
+		var app = angular.module("demo",[]);
+		//C
+		app.controller("indexCtrl",function($scope,$sce){
+			//M
+			$scope.name = "w"
+			$scope.html = $sce.trustAsHtml("<p>123<span>456</span></p>")
+			$scope.Click = function(){
+				alert("click")
+			}
+			$scope.Click();
+		})
+		
+		angular.bootstrap(document,["demo"])
+	</script>
+</html>

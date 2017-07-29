@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0" />
+    <title>ng-if选项卡</title>
+    <style type="text/css">
+    * {
+        -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+        -webkit-tap-highlight-color: transparent;
+        tap-highlight-color: rgba(0, 0, 0, 0);
+    }
+
+    body {
+        margin: 0;
+        padding: 0
+    }
+
+    .top {
+        display: flex;
+    }
+
+    .top div {
+        flex: 1;
+        text-align: center;
+        font-size: 16px;
+        padding: 15px 0;
+    }
+
+    .active {
+        border-bottom: 2px solid #f90;
+    }
+
+    .content img {
+        width: 100%;
+    }
+    </style>
+</head>
+
+<body ng-app="app">
+    <div ng-controller="indexCtrol">
+        <div class="top">
+            <div ng-repeat="i in text" ng-click="change($index)" ng-bind="i" ng-class="{'active': idx == $index ? true : false}"></div>
+        </div>
+        <div class="content">
+            <div ng-repeat="item in imgs" ng-if="$index == idx ? true : false">
+                <img ng-src="{{item}}">
+            </div>
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="js/angular.js"></script>
+<script type="text/javascript">
+var app = angular.module('app', []);
+app.controller('indexCtrol', function($scope) {
+    $scope.text = ['选项一', '选项二', '选项三', '选项四'];
+    $scope.imgs = ['img/5.jpg', 'img/3.jpg', 'img/1.jpg', 'img/4.jpg'];
+    $scope.idx = 0;
+    $scope.change = function($idx) {
+        console.log($idx);
+        $scope.idx = $idx;
+    }
+})
+</script>
+
+</html>

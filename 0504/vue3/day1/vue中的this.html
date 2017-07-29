@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+		<div id="demo">
+			<input v-model="text" />
+			<p>{{name}}</p>
+			<button @click="Click()">Ok</button>
+		</div>
+	</body>
+	<script src="js/vue.js"></script>
+	<script>
+		var demo = new Vue({
+			el: "#demo",
+			data: {
+				name: "wscat",
+				//Click: ""
+			},
+			ready: function() {
+				var self = this;
+				window.setTimeout(function(){
+					self.Click()
+				},1000)
+			},
+			methods: {
+				Click: function() {
+					console.log(this.text);
+					var self = this;
+					(function() {
+						self.name = "oaoafly"
+						console.log(this)//window
+					})()
+				}
+			}
+		})
+		console.log(demo)
+	</script>
+
+</html>

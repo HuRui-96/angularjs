@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="demo" style="border: 1px solid red;">
+			<p>{{name}}</p>
+			<p>{{skill}}</p>
+			<button @click="Click()">Ok</button>
+			<button @click="Click2()">Ok</button>
+		</div>
+		<div id="demo2" style="border: 1px solid blue;">
+			<p>{{name}}</p>
+			<p>{{skill}}</p>
+			<button @click="Click()">Ok</button>
+		</div>
+	</body>
+	<script src="js/vue.js"></script>
+	<!--混合-->
+	<script>
+		(function() {
+			//定义一个混合
+			var mixin = {
+				methods:{
+					Click:function(){
+						console.log("Click")
+					}
+				},
+				data:{
+					name: "yao",
+					skill:"JS"
+				},
+				/*filters
+				directives
+				ready*/
+				
+			}
+			var mixin2 = {
+				methods:{
+					Click2:function(){
+						console.log("Click2")
+					}
+				}
+			}
+			
+			/*Vue.mixin({
+				methods:{
+					Click:function(){
+						console.log("Click")
+					}
+				},
+			})*/
+			
+			new Vue({
+				el: "#demo",
+				mixins:[mixin,mixin2],
+				data: {
+					name: 'xie',
+				},
+				methods: {
+					Click:function(){
+						console.log("Ok")
+					}
+				},
+			})
+
+			new Vue({
+				el: "#demo2",
+				mixins:[mixin],
+				data: {
+					name: 'lan',
+				},
+				methods: {
+				}
+			})
+		})()
+	</script>
+
+</html>

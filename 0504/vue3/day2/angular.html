@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html ng-app="app">
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+		<div ng-controller="indexCtrl" style="border: 1px solid red;">
+			<p ng-color="blue">{{name}}</p>
+			<button ng-click="Click()">Ok</button>
+		</div>
+		<div ng-controller="index2Ctrl" style="border: 1px solid blue;">
+			<p ng-color="blue">{{name}}</p>
+			<button ng-click="Click()">Ok</button>
+		</div>
+	</body>
+	<script src="js/angular.js"></script>
+	<script>
+		var app = angular.module("app", []);
+		app.controller("indexCtrl", function($scope,tool) {
+			$scope.name = "xie";
+			$scope.Click = tool.Click
+		});
+		app.controller("index2Ctrl", function($scope,tool) {
+			$scope.name = "lan";
+			$scope.Click = function() {
+				console.log("click")
+			}
+		});
+		app.directive("ngColor", function() {
+			return {
+				link: function(scope, ele, attr) {
+					ele.css("color", attr.ngColor)
+				}
+			}
+		})
+		app.service("tool", function() {
+			return {
+				Click: function() {
+					console.log("click")
+				}
+			}
+		})
+	</script>
+
+</html>

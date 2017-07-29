@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="demo">
+			<p v-color="yellow">{{name}}</p>
+			<p id="p">123</p>
+			<p v-idpp>456</p>
+		</div>
+	</body>
+	<script src="js/vue.js"></script>
+	<script src="js/jquery.js"></script>
+	<script>
+		//全局定义指令
+		Vue.directive('color',{
+			bind:function(value){
+				console.log(this);
+				console.log(value);
+				//vm === scope
+				//els === el
+				//attr ===)
+				this.el.style.color = this.expression;
+				this.vm.name = "oaoafly"
+			}
+		})
+		//Vue.filter
+		//Vue.component
+		new Vue({
+			el:"#demo",
+			data:{
+				name:"wscat"
+			},
+			ready:function(){
+				//DOM
+				$("#p").css("fontSize","26px")
+			},
+			directives:{
+				idpp:{
+					bind:function(){
+						$(this.el).css("fontSize","26px")
+					}
+				}
+			}
+		})
+	</script>
+</html>

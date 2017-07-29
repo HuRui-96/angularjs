@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+		<div id="demo">
+			<input v-model="search" />
+			<button @click="searchFn">筛选</button>
+			<p v-html="html"></p>
+		</div>
+		<div id="demo2">
+			<input v-model="search" />
+			<!--<p v-html="html|highlight search"></p>-->
+		</div>
+	</body>
+	<script src="js/vue.js"></script>
+	<script>
+		//Vue.directive()
+		/*Vue.filter("highlight", function(input, value) {
+			var arr = input.split(value);
+			var output = arr.join("<span style='color:red'>" + value + "</span>");
+			return output;
+		})*/
+		new Vue({
+			el: "#demo",
+			data: {
+				search:"",
+				html: '6.1号，这是愉快的儿童节，我清晰地记得，愚蠢的老谢牵着高冷老蓝出现在北京千锋大楼的阳台上...老谢很紧张'
+				htmled:''
+			},
+			methods:{
+				searchFn:function(){
+					var arr = this.html.split(this.search);
+					this.html = arr.join("<span style='color:red'>" + this.search + "</span>");
+				}
+			},
+			ready: function() {}
+				/*filters: {
+					highlight: function(input, value) {
+						var arr = input.split(value);
+						var output = arr.join("<span style='color:red'>" + value + "</span>");
+						return output;
+					}
+				}*/
+		})
+		new Vue({
+			el: "#demo2",
+			data: {
+				html: '6.1号，这是愉快的儿童节，我清晰地记得，愚蠢的老谢牵着高冷老蓝出现在北京千锋大楼的阳台上...老谢很紧张'
+			}
+		})
+	</script>
+
+</html>

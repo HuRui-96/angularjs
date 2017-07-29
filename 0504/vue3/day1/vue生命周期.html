@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="demo">
+			<p>{{name}}</p>
+			<!--=><p>wscat</p>-->
+			<button @click="Click()">Ok</button>
+		</div>
+	</body>
+	<script src="js/vue.js"></script>
+	<script>
+		new Vue({
+			el:"#demo",
+			data:{
+				name:"wscat"
+			},
+			created:function(){
+				alert("实例化之前")
+			},
+			beforeCompile:function(){
+				alert("编译之前")
+			},
+			compiled:function(){
+				alert("编译后")
+			},
+			ready:function(){
+				alert("一切准备好");
+				this.Click()
+			},
+			methods:{
+				Click:function(){
+					console.log("hello");
+				}
+			}
+		})
+	</script>
+</html>

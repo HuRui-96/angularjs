@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<style>
+		/*动画完全显示后*/
+		.abc-transition{
+			transition: all 3s ease;
+			height: 20px;
+			opacity: 1;
+			color: red;
+			transform: rotate(0deg);
+		}
+		/*进来的时候*/
+		.abc-enter{
+			height: 0;
+			opacity: 0;
+			color: black;
+			transform: rotate(360deg);
+		}
+		/*离开的时候*/
+		.abc-leave{
+			height: 0;
+			opacity: 0;
+			color: black;
+			transform: rotate(360deg);
+		}
+		
+		.cba-transition{
+			transition: all 1s ease;
+			height: 30px;
+			opacity: 1;
+		}
+		
+		.cba-enter,.cba-leave{
+			height: 0px;
+			opacity: 0;
+		}
+		/*
+		 * 进场动画
+		 * enter->transition
+		 * 离场动画
+		   transition->leave*/
+	</style>
+	<body>
+		<div id="demo">
+			<div v-show="bool" transition="abc">{{str}}</div>
+			<button @click="isShow()">显示或者隐藏</button>
+			
+			<div v-if="bool" transition="abc">{{str}}</div>
+			<button @click="isShow()">显示或者隐藏</button>
+			
+			<input v-model="search" />
+			<ul>
+				<li v-for="arr in arrs|filterBy search in 'name'" transition="cba">{{arr.name}}</li>
+			</ul>
+		</div>
+	</body>
+	<script src="js/vue.js"></script>
+	<script>
+		new Vue({
+			el: "#demo",
+			data: {
+				search:'',
+				bool: true,
+				str: "hello world",
+				arrs:[{
+					name:'a'
+				},{
+					name:'b'
+				},{
+					name:'c'
+				},{
+					name:'d'
+				}]
+			},
+			methods: {
+				isShow: function() {
+					this.bool = !this.bool
+				}
+			}
+		})
+	</script>
+</html>

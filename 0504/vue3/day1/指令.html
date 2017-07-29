@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<style>
+		.red{
+			color: mediumvioletred;
+		}
+	</style>
+	<body>
+		<div id="app">
+			<p style="color: red;">v-text</p>
+			<p v-text="name" :style="{color:color,fontSize:size+'px'}"></p>
+			<p style="color: red;">v-html</p>
+			<p v-html="html"></p>
+			<p style="color: red;">v-model</p>
+			<p style="color:green">input</p>
+			<input v-model="name" />
+			<p style="color:green">textarea</p>
+			<textarea v-model="size"></textarea>
+			<p style="color:green">select</p>
+			<select v-model="color">
+				<option value="red">red</option>
+				<option value="blue">blue</option>
+				<option value="yellow">yellow</option>
+			</select>
+			<p style="color: red;">v-show</p>
+			<p v-show="bool">显示或隐藏</p>
+			<p style="color: red;">v-if</p>
+			<input v-model="size" type="range" />
+			<p>{{size}}</p>
+			<p v-if="size>20">真的</p>
+			<p v-else>假的</p>
+			<p style="color: red;">v-for</p>
+			<!--ul select table-->
+			<ul>
+				<li v-for="(index,arr) in arrs">第{{index+1}}个: name:{{arr.name}} skill:{{arr.skill}}</li>
+			</ul>
+			<p v-for="arr in arrs" @click="Click($index,$event)">第{{$index+1}}个: name:{{arr.name}} skill:{{arr.skill}}</p>
+			<p style="color: red;">v-on:XXXX/@</p>
+			<button v-on:click="Click()">Ok</button>
+			<button @click="Click()">Ok</button>
+			<p style="color: red;">v-bind:/:</p>
+			<p class="{{}}"></p>
+			<p :class="{'red':isRed}">redred</p>
+			<p style="{{}}"></p>
+			<p :style="{color:'blue',fontSize:'26px'}">redred</p>
+			<p name="{{name}}">1</p>
+			<p :name="name" :id>2</p>
+			<img :src="src" />
+			<a :href="src" />
+		</div>
+	</body>
+	<script src="js/vue.js"></script>
+	<script src="js/jquery.js"></script>
+	<script>
+		new Vue({
+			el:"#app",
+			//数据
+			data:{
+				//ng-bind vs v-text
+				name:"wwwww",
+				color:"green",
+				size: 16,
+				//ng-bind-html vs v-html
+				html:"<p>123<span>456</span></p>",
+				//ng-model vs v-model  input select textarea
+				//ng-show vs v-show
+				bool:true,
+				//ng-if vs v-if
+				//ng-repeat vs v-for
+				arrs:[{
+					name:'xie',
+					skill:'JS'
+				},{
+					name:'lan',
+					skill:'CSS'
+				},{
+					name:'yao',
+					skill:'HTML'
+				}],
+				
+				//ng-class ng-style
+				isRed:true,
+				//ng-src ng-href
+				src:"img/cat.jpg"
+			},
+			//事件
+			methods:{
+				//ng-click v-click
+				Click:function(index,event){
+					console.log(index)
+					console.log(event)
+					$(event.target).css("color","red").addClass("abc")
+					//event.target.style.color = "red"
+				}
+			}
+			//on bind live
+			//addEventLitener
+		})
+	</script>
+</html>

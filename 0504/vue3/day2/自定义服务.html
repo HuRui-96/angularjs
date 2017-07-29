@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+		<div id="demo" style="border: 1px solid red;">
+			<p>{{name}}</p>
+			<p>{{data.name}}</p>
+			<button @click="Click()">Ok</button>
+		</div>
+		<div id="demo2" style="border: 1px solid blue;">
+			<p>{{name}}</p>
+			<p>{{data.name}}</p>
+			<button @click="Click()">Ok</button>
+		</div>
+	</body>
+	<script src="js/vue.js"></script>
+	<!--混合-->
+	<script>
+		(function() {
+			//创建了一个Click服务
+			var Click = function() {
+				console.log("click")
+			}
+			
+			var data = {
+				name : "yi"
+			}
+			new Vue({
+				el: "#demo",
+				data: {
+					name: 'xie',
+					data:data
+				},
+				methods: {
+					Click: Click
+				},
+				ready:function(){
+					this.data.name = "abc"
+				}
+			})
+
+			new Vue({
+				el: "#demo2",
+				data: {
+					name: 'lan',
+					data:data
+				},
+				methods: {
+					Click: Click
+				}
+			})
+		})()
+	</script>
+
+</html>

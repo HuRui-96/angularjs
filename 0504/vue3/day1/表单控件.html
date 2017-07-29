@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body id="demo">
+		<p style="color: red;">text</p>
+		<p>{{input}}</p>
+		<input v-model="input" type="text" />
+		<p style="color: red;">radio</p>
+		<p>{{input}}</p>
+		<input v-model="input" value="1" type="radio" />
+		<input v-model="input" value="2" type="radio" />
+		<input v-model="input" value="3" type="radio" />
+		<p style="color: red;">checkbox</p>
+		<p>{{checkboxarr}}</p>
+		<input v-model="checkboxarr" value="aaa" type="checkbox" />
+		<input v-model="checkboxarr" value="bbb" type="checkbox" />
+		<input v-model="checkboxarr" value="ccc" type="checkbox" />
+		<input v-model="checkboxarr" value="ddd" type="checkbox" />
+	</body>
+	<script src="js/vue.js"></script>
+	<script>
+		new Vue({
+			el: "#demo",
+			data: {
+				input: '',
+				checkboxarr:[]
+			},
+		})
+	</script>
+</html>

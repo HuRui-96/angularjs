@@ -1,0 +1,59 @@
+<!--vue + vue-roter +vue-resource+ vue-swiper + vuex +weui/bootstrap+webpack/gulp + ES6 +zepto/jquery+sass/less-->
+<!--angular + angular-router+ionic+angular-cookie+angular-touch-->
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+		<title></title>
+	</head>
+	<link rel="stylesheet" href="css/weui.css" />
+	<link rel="stylesheet" href="css/base.css" />
+	<link rel="stylesheet" href="css/swiper.css" />
+	<body id="demo">
+		<xheader></xheader>
+		<xsearch></xsearch>
+		<xswiper></xswiper>
+		<xlist></xlist>
+	</body>
+	<script src="js/vue.js"></script>
+	<script src="js/vuex.js"></script>
+	<script src="components/xheader.js"></script>
+	<script src="components/xsearch.js"></script>
+	<script src="components/xswiper.js"></script>
+	<script src="components/xlist.js"></script>
+	<script src="js/jquery.js"></script>
+	<script src="js/swiper.js"></script>
+	<script>
+		var store = new Vuex.Store({
+			//存储数据的地方
+			state:{
+				name:"新闻",
+				author:"wscats",
+				searchName:""
+			},
+			mutations:{
+				//改变值的方法
+				changeName:function(state,a){
+					state.name = a
+				},
+				changesearchName:function(state,a){
+					state.searchName = a
+				}
+			},
+			//获取数据的方法
+			getters:{
+				getName:function(state){
+					return state.name
+				}
+			}
+		})
+	</script>
+	<script>
+		new Vue({
+			el: "#demo",
+			components: {},
+			store
+		})
+	</script>
+</html>

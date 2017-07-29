@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+		<div id="demo" style="border: 1px solid red;">
+			<p v-bind:id="idName">未缩写</p>
+			<p :id="idName">缩写</p>
+			<p id="{{idName}}">缩写</p>
+
+		</div>
+		<div id="demo2" style="border: 1px solid blue;">
+			<p>{{name}}</p>
+		</div>
+	</body>
+	<script src="js/vue.js"></script>
+	<script>
+		(function() {
+			new Vue({
+				el: "#demo",
+				data: {
+					name: 'yao',
+					idName: 'abc'
+				}
+			})
+			new Vue({
+				el: "#demo2",
+				data: {
+					name: 'xie'
+				}
+			})
+		})()
+	</script>
+
+</html>

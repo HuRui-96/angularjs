@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="demo">
+			<p>{{a}}</p>
+			<!--<p>{{b}}</p>-->
+			<p>{{{html}}}</p>
+		</div>
+	</body>
+	<script src="js/vue.js"></script>
+	<script src="js/jquery.js"></script>
+	<script>
+		new Vue({
+			el:"#demo",
+			data:{
+				a:"abc",
+				//b:''
+				//b:null
+				//html:"<p>123</p>"
+			},
+			//计算属性
+			computed:{
+				b:function(){
+					return this.a + 3
+				},
+				html:function(){
+					var self = this;
+					$.ajax({
+						type:"get",
+						url:"test.php",
+						async:true,
+						success:function(data){
+							self.a = data;
+						}
+					});
+					return "<p>123"+self.a+"</p>"
+				}
+			},
+			
+		})
+	</script>
+</html>

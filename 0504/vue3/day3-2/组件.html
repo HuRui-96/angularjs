@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="demo" style="border: 1px solid red;">
+			<p>{{name}}</p>
+			<first-compenent></first-compenent>
+		</div>
+		<div id="demo2" style="border: 1px solid blue;">
+			<p>{{name}}</p>
+			<first-compenent></first-compenent>
+		</div>
+	</body>
+	<script src="js/vue.js"></script>
+	<script type="text/template" id="tpl">
+		<p>这是第一个组件</p>
+		<p>{{news}}</p>
+		<second-compenent></second-compenent>
+	</script>
+	<!--<template id="tpl">
+		<p>这是第一个组件</p>
+	</template>-->
+	<script>
+		//构造器定义
+		//html css js     (html css)->templateUrl    (js)->link->controller
+		var ccc = Vue.extend({
+				//templateUrl
+				//html css
+			template: "<p>第三个组件</p>",
+		})
+		var bbb = Vue.extend({
+				//templateUrl
+				//html css
+			template: "<p>第二个组件</p><third-compenent></third-compenent>",
+			components:{
+				thirdCompenent:ccc
+			}
+		})
+		var aaa = Vue.extend({
+				//templateUrl
+				//html css
+			template: "#tpl",
+			data:{},
+			methods:{},
+			components:{
+				secondCompenent:bbb
+			}
+		})
+			//注册
+			//Vue.component("firstCompenent", aaa)
+			//eno
+		new Vue({
+			el: "#demo",
+			data: {
+				name: "组件DEMO"
+			},
+			components: {
+				xheader: aaa
+			}
+		})
+		new Vue({
+				el: "#demo2",
+				data: {
+					name: "组件DEMO2"
+				},
+				components: {
+					firstCompenent: aaa
+				}
+			})
+			/*<abc></abc>
+			app.directive("abc",function(){
+				return {
+					template:""
+				}
+			})*/
+	</script>
+
+</html>
