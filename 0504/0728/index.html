@@ -6,37 +6,58 @@
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
     <title>ui路由</title>
     <style type='text/css'>
+		* {margin:0;padding:0}
 		.top {display: flex;}
-		.top a {flex: 1;color: black;text-decoration: none;font-size: 16px;text-align: center;}
+		.top a {flex: 1;color: black;text-decoration: none;font-size: 16px;text-align: center;display:inline-block;height:30px;line-height:30px;border:1px solid #ccc}
+		.content div {text-align:center;height:150px;background:#f80;line-height:150px;}
+		.active {background:#ccc}	
+		.content p a {color:black;text-decoration: none;padding:5px;border:1px solid #ccc}
     </style>
 </head>
 
 <body>
-    <div class="top">
-        <a href="#!/page1" >第一页</a>
-        <a href="#!/page2">第二页</a>
-        <a href="#!/page3">第三页</a>
+    <div class="top" ng-controller="indexCtrol">
+        <a href="#!/page1" ng-click="select(1)" ng-class="{active:arr[idx-1][0]}" >第一页</a>
+        <a href="#!/page2" ng-click="select(2)" ng-class="{active:arr[idx-1][1]}" >第二页</a>
+        <a href="#!/page3" ng-click="select(3)" ng-class="{active:arr[idx-1][2]}">第三页</a>
     </div>
-    <ui-view></ui-view>
+	<div class='content'>
+		<ui-view></ui-view>
+	</div>
+    
 </body>
 <script src="js/angular.js"></script>
 <script src="js/angular-ui-router.js"></script>
 <script>
 var app = angular.module('hrapp', ['ui.router']);
-
+app.controller('indexCtrol', function($scope) {
+    $scope.arr=[[1,0,0],[0,1,0],[0,0,1]];
+    $scope.idx = 1;
+    $scope.select=function (n) {
+				this.idx = n;
+			}
+})
 app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
     //配置路由
     $stateProvider.state('page1', {
             url: '/page1',
-            template: '<p>我是第一页</p>',
+            template: '<div>我是第一页</div>',
         })
         .state('page2', {
             url: '/page2',
-            template: '<p>我是第二页</p>',
+            template: '<div>我是第二页<p><a href="#!/page2/a">子页面一</a><a href="#!/page2/b">子页面二</a><p><ui-view></ui-view></div>',
+        })
+		.state('page2.a', {
+            url: '/a',
+            template: '<p>aaaa</p>',
+        })
+		.state('page2.b', {
+            url: '/b',
+            template: '<p>bbbb</p>',
         })
         .state('page3', {
             url: '/page3',
-            template: '<p>我是第三页</p>',
+            template: '<div>我是第三页</div>',
         });
     //默认路由
     $urlRouterProvider.when('','/page1');
